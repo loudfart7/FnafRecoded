@@ -26,14 +26,14 @@ namespace FnafRecoded
         int officeX;
         int officeY;
 
-        public bool leftLightOn = false;  // For lights
+        public bool leftLightOn = false; 
         public bool rightLightOn = false;
 
         int power = 100;
 
         // Door states and animation
-        bool doorLeftClosed = false;   // start open
-        bool doorRightClosed = false;  // start open
+        bool doorLeftClosed = false; 
+        bool doorRightClosed = false;  
 
         int doorLeftAnimationProgress = 0;
         int doorRightAnimationProgress = 0;
@@ -43,7 +43,7 @@ namespace FnafRecoded
         bool doorRightClosing = false;
         bool doorRightOpening = false;
 
-        int animationDuration = 30;
+        int animationDuration = 20;
 
         KeyboardState previousKeyboardState;
 
@@ -88,9 +88,11 @@ namespace FnafRecoded
 
             officeTexture = Content.Load<Texture2D>("office");
 
-            leftLightTexture = Content.Load<Texture2D>("leftLightOn"); // A
-            rightLightTexture = Content.Load<Texture2D>("rightLightOn"); // D
+            //Lights
+            leftLightTexture = Content.Load<Texture2D>("leftLightOn");
+            rightLightTexture = Content.Load<Texture2D>("rightLightOn");
 
+            //Doors
             doorLeftTexture = Content.Load<Texture2D>("doorLeft");
             doorRightTexture = Content.Load<Texture2D>("doorRight");
         }
@@ -134,15 +136,14 @@ namespace FnafRecoded
                 }
             }
 
-            // Toggle left light
+            // Toggle Lights
             if (keyboardState.IsKeyDown(Keys.A) && !previousKeyboardState.IsKeyDown(Keys.A) && power > 0)
                 leftLightOn = !leftLightOn;
 
-            // Toggle right light
             if (keyboardState.IsKeyDown(Keys.D) && !previousKeyboardState.IsKeyDown(Keys.D) && power > 0)
                 rightLightOn = !rightLightOn;
 
-            // Animate doorLeft
+            // Door Animations
             if (doorLeftClosing)
             {
                 doorLeftAnimationProgress += 1;
@@ -164,7 +165,6 @@ namespace FnafRecoded
                 }
             }
 
-            // Animate doorRight
             if (doorRightClosing)
             {
                 doorRightAnimationProgress += 1;
@@ -223,7 +223,7 @@ namespace FnafRecoded
             int newWidth = (int)(newHeight * aspectRatio);
 
             int doorHeight = newHeight;
-            int extraHeight = 250;  // extra height you want to add to door size and offset
+            int extraHeight = 250;
             int doorTotalHeight = doorHeight + extraHeight;
 
             int doorLeftOffsetY = 0;
